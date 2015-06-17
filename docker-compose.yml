@@ -4,7 +4,42 @@ nodeapi:
  build: ./nodeapi
  restart: always
  ports:
- - "8081:8081"
+ - "8080:8080"
+
+kibana:
+
+ build: ./kibana
+ restart: always
+ ports:
+ - "5601:5601"
+ links:
+ - elasticsearch
+
+elasticsearch:
+
+ build: ./elasticsearch
+ restart: always
+ ports:
+ - "9200:9200"
+ - "9300:9300"
+ volumes:
+ - "/data:/data"
+
+logstash:
+
+ build: ./logstash
+ restart: always
+ ports:
+ - "4545:4545"
+ - "4546:4546"
+
+rancher:
+
+ build: ./rancher
+ restart: always
+ ports:
+ - "8083:8083"
+ - "50000:50000"
 
 # nexus:
 #   build: ./nexus
