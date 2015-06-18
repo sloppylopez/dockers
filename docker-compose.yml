@@ -1,4 +1,5 @@
 #indentation is relevant!
+#VERSION: 1.0.0
 nodeapi:
 
  build: ./nodeapi
