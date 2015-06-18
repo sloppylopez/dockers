@@ -4,7 +4,7 @@ nodeapi:
  build: ./nodeapi
  restart: always
  ports:
- - "8084:8084"
+ - "3000:3000"
 
 kibana:
 

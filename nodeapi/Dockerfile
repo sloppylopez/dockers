@@ -40,7 +40,7 @@ RUN git clone https://github.com/$GIT_USER/$GIT_BASE_FOLDER.git
 RUN cd ./$GIT_BASE_FOLDER;npm install
 
 # nodejs port
-EXPOSE  8084
+EXPOSE  3000
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
