@@ -4,7 +4,7 @@ nodeapi:
  build: ./nodeapi
  restart: always
  ports:
- - "8080:8080"
+ - "8084:8084"
 
 kibana:
 
@@ -38,7 +38,7 @@ rancher:
  build: ./rancher
  restart: always
  ports:
- - "8083:8083"
+ - "8080:8080"
  - "50000:50000"
 
 # nexus:

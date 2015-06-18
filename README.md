@@ -30,15 +30,14 @@ Prerequisites :
     * Docker-compose
     
 ### To build:FIRST INSTALL!
-    1)sudo sh prerequisites_install.sh
+    1)I assume you have docker installed
     2)sudo sh run_dockers.sh
     
 ###After install:
-    1) http://localhost:9000/#/    angularclient
     2) http://localhost:5601       kibana
-    3) http://localhost:8081/api   nodeapi
+    3) http://localhost:8084/api   nodeapi
     4) http://localhost:9200       elasticsearch
-    5) http://localhost:8080       jenkins (NOT WORKING YET)
+    5) http://localhost:8080       rancher
 
 ##Upgrade docker
     wget -N https://get.docker.com/ | sh
@@ -47,7 +46,7 @@ Prerequisites :
     sudo docker ps  -> list containers
     sudo docker run -d  -> run in detached mode
     sudo docker build .  -> build docker image
-    sudo docker build -t maestrodev/build-agent .  -> build docker image
+    sudo docker build -t sloppylopez/projectname .  -> build docker image
 
 ##Single Run(phusion images only)
     $ docker run -t -i <YOUR_NAME_IMAGE> /sbin/my_init -- bash -l
