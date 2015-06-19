@@ -50,6 +50,9 @@ Prerequisites :
 
 ##Single Run(phusion images only)
     $ docker run -t -i <YOUR_NAME_IMAGE> /sbin/my_init -- bash -l
+    
+Info sources:
+http://stackshare.io/docker-tools
 
 
 
