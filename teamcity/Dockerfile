@@ -39,6 +39,7 @@ RUN \
  tar xvzf $TC_PKG_NAME.tar.gz && \
  rm -f $DESTINATION.tar.gz && \
  sh ./$DESTINATION/bin/startup.sh
+ mv ./plugins/jonnyzzz.node.zip ./$DESTINATION/plugins
 
 # Expose ports
 EXPOSE 8111
