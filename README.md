@@ -54,15 +54,17 @@ Prerequisites :
     sudo docker run -d  -> run in detached mode
     sudo docker build .  -> build docker image
     sudo docker build -t sloppylopez/projectname .  -> build docker image
-    sudo docker run -e TEAMCITY_SERVER=http://buildserver:8111 -dt -p 9090:9090 ariya/centos6-teamcity-agent run teamcity CI server
+    sudo docker run -dt -p 8111:8111 dockers_teamcity -> run docker teamcity image in detached mode
+    sudo docker run -ti -p 8111:8111 dockers_teamcity /bin/bash -> run docker teamcity image in interactive mode
 
 ##Single Run(phusion images only)
     $ docker run -t -i <YOUR_NAME_IMAGE> /sbin/my_init -- bash -l
     
-Info sources:
-http://stackshare.io/docker-tools
-http://ariya.ofilabs.com/2015/03/continuous-integration-for-node-js-projects-with-teamcity.html
-https://github.com/clayman74/docker-teamcity/blob/master/server/Dockerfile
+##Info sources:
+    http://stackshare.io/docker-tools
+    http://ariya.ofilabs.com/2015/03/continuous-integration-for-node-js-projects-with-teamcity.html
+    https://github.com/clayman74/docker-teamcity/blob/master/server/Dockerfile
+    http://blog.fire-development.com/2014/09/23/teamcity-8-setup-on-linux/
 
 
 
