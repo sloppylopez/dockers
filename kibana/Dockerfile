@@ -9,7 +9,7 @@
 # using latest version 0.9.16
 FROM phusion/baseimage:0.9.16
 #FROM ubuntu:14.04
-MAINTAINER Sloppy Lopez <slopez@estudioweb130.com>
+MAINTAINER Sloppy Lopez <sloppy@sloppylopez.com>
 
 ENV KIBANA_VERSION=4.0.2
 

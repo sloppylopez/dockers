@@ -13,7 +13,7 @@ FROM phusion/baseimage:0.9.16
 ENV LOGSTASH_VER 1.5.0.rc2
 ENV DEBIAN_FRONTEND noninteractive
 WORKDIR /opt
-MAINTAINER Sloppy Lopez <slopez@estudioweb130.com>
+MAINTAINER Sloppy Lopez <sloppy@sloppylopez.com>
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]

@@ -1,5 +1,5 @@
 FROM rancher/server:latest
-MAINTAINER Sloppy Lopez <slopez@estudioweb130.com>
+MAINTAINER Sloppy Lopez <sloppy@sloppylopez.com>
 
 # for main web interface:
 EXPOSE 8080
