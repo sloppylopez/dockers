@@ -30,9 +30,12 @@ ENV TC_PKG_NAME TeamCity-9.0.4.tar.gz
 ENV DESTINATION TeamCity
 ENV NODE_PLUGIN jonnyzzz.node.zip
 ENV TC_SCRIPT teamcity
+ENV TEAMCITY_DATA_PATH /opt/.BuildServer
 
 # Install TeamCity CI
 RUN mkdir /opt/$DESTINATION; mkdir /opt/$DESTINATION/logs; mkdir /opt/$DESTINATION/plugins
+RUN mkdir -p /root/.BuildServer
+RUN sudo chmod 766 /root/.BuildServer
 ADD /plugins/$NODE_PLUGIN /opt/$DESTINATION/plugins/$NODE_PLUGIN
 ADD /scripts/$TC_SCRIPT /etc/init.d/$TC_SCRIPT
 
@@ -43,18 +46,16 @@ RUN \
  rm -f $TC_PKG_NAME && \
  sudo useradd $TC_SCRIPT && \
  sudo chown -R $TC_SCRIPT:$TC_SCRIPT /opt/$DESTINATION && \
- sudo chmod 744 /opt/$DESTINATION/plugins/$NODE_PLUGIN && \
+ sudo chmod 766 /opt/$DESTINATION/plugins/$NODE_PLUGIN && \
  sudo update-rc.d $TC_SCRIPT defaults && \
  sudo chmod +x /etc/init.d/$TC_SCRIPT
 
 # Define mountable directories
-VOLUME ["/opt/TeamCity"]
-
-# Define working directory
-WORKDIR /opt/TeamCity
+VOLUME  ["/root"]
 
 # Expose ports
 EXPOSE 8111
+EXPOSE 9090
 
 # Define default command
 CMD ["/opt/TeamCity/bin/teamcity-server.sh", "run"]
