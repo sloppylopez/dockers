@@ -33,7 +33,7 @@ ENV TC_SCRIPT teamcity
 ENV TEAMCITY_DATA_PATH /opt/.BuildServer
 
 # Install TeamCity CI
-RUN mkdir /opt/$DESTINATION; mkdir /opt/$DESTINATION/logs; mkdir /opt/$DESTINATION/plugins
+RUN mkdir /opt/$DESTINATION; mkdir /opt/$DESTINATION/logs; mkdir /opt/$DESTINATION/plugins; mkdir /opt/$DESTINATION/conf
 RUN mkdir -p /root/.BuildServer
 RUN sudo chmod 766 /root/.BuildServer
 ADD /plugins/$NODE_PLUGIN /opt/$DESTINATION/plugins/$NODE_PLUGIN

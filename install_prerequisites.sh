@@ -9,7 +9,7 @@ wget -qO- https://get.docker.com/ | sh
 #sudo usermod -aG docker <YOUR_UBUNTU_USER>
 
 #Docker-Compose
-sudo curl -L https://github.com/docker/compose/releases/download/1.2.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+sudo curl -L https://github.com/docker/compose/releases/download/1.3.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 #Check installed versions
 docker --version

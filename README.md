@@ -66,3 +66,5 @@ Prerequisites :
     https://github.com/clayman74/docker-teamcity/blob/master/server/Dockerfile
     http://blog.fire-development.com/2014/09/23/teamcity-8-setup-on-linux/
     https://confluence.jetbrains.com/display/TCD7/Setting+up+an+External+Database#SettingupanExternalDatabase-MySQL
+    https://confluence.jetbrains.com/display/TCD9/Setting+up+and+Running+Additional+Build+Agents
+    http://sparktutorials.github.io/2015/04/14/getting-started-with-spark-and-docker.html
