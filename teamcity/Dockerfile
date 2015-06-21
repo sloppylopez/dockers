@@ -33,7 +33,7 @@ ENV TC_SCRIPT teamcity
 
 # Install ElasticSearch
 RUN mkdir /opt/$DESTINATION; mkdir /opt/$DESTINATION/logs; mkdir /opt/$DESTINATION/plugins
-ADD /plugins/$NODE_PLUGIN /opt/$DESTINATION/plugins
+ADD /plugins/$NODE_PLUGIN /opt/$DESTINATION/plugins/$NODE_PLUGIN
 ADD /scripts/$TC_SCRIPT /etc/init.d/$TC_SCRIPT
 
 RUN \
