@@ -33,13 +33,14 @@ ENV DESTINATION TeamCity
 RUN mkdir /opt/$DESTINATION
 RUN mkdir /opt/$DESTINATION/logs
 COPY $TC_PKG_NAME.tar.gz /opt/$TC_PKG_NAME.tar.gz
+COPY ./plugins/jonnyzzz.node.zip /opt/jonnyzzz.node.zip
 
 RUN \
  cd /opt / && \
  tar xvzf $TC_PKG_NAME.tar.gz && \
  rm -f $DESTINATION.tar.gz && \
- sh ./$DESTINATION/bin/startup.sh
- mv ./plugins/jonnyzzz.node.zip ./$DESTINATION/plugins
+ sh ./$DESTINATION/bin/startup.sh && \
+ mv /opt/jonnyzzz.node.zip ./$DESTINATION/plugins
 
 # Expose ports
 EXPOSE 8111
