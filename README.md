@@ -51,20 +51,18 @@ Prerequisites :
 
 ##Useful commands
     sudo docker ps  -> list containers
-    sudo docker run -d  -> run in detached mode
+    sudo docker run -d container_id -> run in detached mode
     sudo docker build .  -> build docker image
     sudo docker build -t sloppylopez/projectname .  -> build docker image
     sudo docker run -dt -p 8111:8111 dockers_teamcity -> run docker teamcity image in detached mode
     sudo docker run -ti -p 8111:8111 dockers_teamcity /bin/bash -> run docker teamcity image in interactive mode
 
 ##Single Run(phusion images only)
-    $ docker run -t -i <YOUR_NAME_IMAGE> /sbin/my_init -- bash -l
+    docker run -t -i <YOUR_NAME_IMAGE> /sbin/my_init -- bash -l
     
 ##Info sources:
     http://stackshare.io/docker-tools
     http://ariya.ofilabs.com/2015/03/continuous-integration-for-node-js-projects-with-teamcity.html
     https://github.com/clayman74/docker-teamcity/blob/master/server/Dockerfile
     http://blog.fire-development.com/2014/09/23/teamcity-8-setup-on-linux/
-
-
-
+    https://confluence.jetbrains.com/display/TCD7/Setting+up+an+External+Database#SettingupanExternalDatabase-MySQL
