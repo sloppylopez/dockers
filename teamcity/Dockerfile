@@ -26,26 +26,32 @@ RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true 
 RUN apt-get install -y oracle-java8-installer
 
 # Set install version
-ENV TC_PKG_NAME TeamCity-9.0.4
+ENV TC_PKG_NAME TeamCity-9.0.4.tar.gz
 ENV DESTINATION TeamCity
+ENV NODE_PLUGIN jonnyzzz.node.zip
+ENV TC_SCRIPT teamcity
 
 # Install ElasticSearch
-RUN mkdir /opt/$DESTINATION
-RUN mkdir /opt/$DESTINATION/logs
-COPY $TC_PKG_NAME.tar.gz /opt/$TC_PKG_NAME.tar.gz
-COPY ./plugins/jonnyzzz.node.zip /opt/jonnyzzz.node.zip
+RUN mkdir /opt/$DESTINATION; mkdir /opt/$DESTINATION/logs
+COPY ./plugins/$NODE_PLUGIN /opt/$NODE_PLUGIN
+COPY ./scripts/$TC_SCRIPT /etc/init.d/$TC_SCRIPT
 
 RUN \
  cd /opt / && \
- tar xvzf $TC_PKG_NAME.tar.gz && \
- rm -f $DESTINATION.tar.gz && \
- sh ./$DESTINATION/bin/startup.sh && \
- mv /opt/jonnyzzz.node.zip ./$DESTINATION/plugins
+ wget http://download-cf.jetbrains.com/teamcity/$TC_PKG_NAME && \
+ tar xvzf $TC_PKG_NAME && \
+ rm -f $TC_PKG_NAME && \
+ mv /opt/$NODE_PLUGIN ./$DESTINATION/plugins && \
+ sudo useradd $TC_SCRIPT && \
+ sudo chown -R $TC_SCRIPT:$TC_SCRIPT /opt/$DESTINATION && \
+ sudo update-rc.d $TC_SCRIPT defaults && \
+ sudo chmod +x /etc/init.d/$TC_SCRIPT
 
 # Expose ports
 EXPOSE 8111
 
 # Define default command
+CMD ["/opt/TeamCity/bin/teamcity-server.sh", "run"]
 
 # ...put your own build instructions here...
 

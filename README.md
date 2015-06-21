@@ -62,6 +62,7 @@ Prerequisites :
 Info sources:
 http://stackshare.io/docker-tools
 http://ariya.ofilabs.com/2015/03/continuous-integration-for-node-js-projects-with-teamcity.html
+https://github.com/clayman74/docker-teamcity/blob/master/server/Dockerfile
 
 
 
