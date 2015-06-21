@@ -1,6 +1,12 @@
 Base Article http://thepracticalsysadmin.com/running-elk-on-docker/
 
-## docker has stopped distributing images with java pre-installed ![alt tag](http://www.clker.com/cliparts/f/7/d/e/1339641514467388466forever%20alone-th.png)
+## docker has stopped distributing images with java pre-installed 
+ 
+ <img src="https://github.com/sloppylopez/angularclient/blob/master/app/images/100x100/foreveralone.jpg" alt="sloppylopez.com"/>
+ ![alt tag](http://www.memesly.com/media/created/ghp9w3.jpg) v1.0.1-forever-alone
+ 
+ <a href="http://sloppylopez.com/">sloppylopez.com</a>
+ 
     We use this problem to generate an opportunity, we will start using
 
         http://phusion.github.io/baseimage-docker/#solution
@@ -34,25 +40,31 @@ Prerequisites :
     2)sudo sh run_dockers.sh
     
 ###After install:
-    2) http://localhost:5601       kibana
-    3) http://localhost:8084/api   nodeapi
-    4) http://localhost:9200       elasticsearch
-    5) http://localhost:8080       rancher
+    1) http://localhost:5601       kibana
+    2) http://localhost:8084/api   nodeapi
+    3) http://localhost:9200       elasticsearch
+    4) http://localhost:8080       rancher
+    5) http://localhost:8111       teamcity (ci for nodejs)
 
 ##Upgrade docker
     wget -N https://get.docker.com/ | sh
 
 ##Useful commands
     sudo docker ps  -> list containers
-    sudo docker run -d  -> run in detached mode
+    sudo docker run -d container_id -> run in detached mode
     sudo docker build .  -> build docker image
     sudo docker build -t sloppylopez/projectname .  -> build docker image
+    sudo docker run -dt -p 8111:8111 dockers_teamcity -> run docker teamcity image in detached mode
+    sudo docker run -ti -p 8111:8111 dockers_teamcity /bin/bash -> run docker teamcity image in interactive mode
 
 ##Single Run(phusion images only)
-    $ docker run -t -i <YOUR_NAME_IMAGE> /sbin/my_init -- bash -l
+    docker run -t -i <YOUR_NAME_IMAGE> /sbin/my_init -- bash -l
     
-Info sources:
-http://stackshare.io/docker-tools
-
-
-
+##Info sources:
+    http://stackshare.io/docker-tools
+    http://ariya.ofilabs.com/2015/03/continuous-integration-for-node-js-projects-with-teamcity.html
+    https://github.com/clayman74/docker-teamcity/blob/master/server/Dockerfile
+    http://blog.fire-development.com/2014/09/23/teamcity-8-setup-on-linux/
+    https://confluence.jetbrains.com/display/TCD7/Setting+up+an+External+Database#SettingupanExternalDatabase-MySQL
+    https://confluence.jetbrains.com/display/TCD9/Setting+up+and+Running+Additional+Build+Agents
+    http://sparktutorials.github.io/2015/04/14/getting-started-with-spark-and-docker.html
