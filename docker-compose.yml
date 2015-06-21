@@ -46,6 +46,8 @@ teamcity:
 
  build: ./teamcity
  restart: always
+ volumes:
+ - "/opt/TeamCity:/opt/TeamCity"
  ports:
  - "8111:8111"
 

@@ -31,7 +31,7 @@ ENV DESTINATION TeamCity
 ENV NODE_PLUGIN jonnyzzz.node.zip
 ENV TC_SCRIPT teamcity
 
-# Install ElasticSearch
+# Install TeamCity CI
 RUN mkdir /opt/$DESTINATION; mkdir /opt/$DESTINATION/logs; mkdir /opt/$DESTINATION/plugins
 ADD /plugins/$NODE_PLUGIN /opt/$DESTINATION/plugins/$NODE_PLUGIN
 ADD /scripts/$TC_SCRIPT /etc/init.d/$TC_SCRIPT
@@ -43,8 +43,15 @@ RUN \
  rm -f $TC_PKG_NAME && \
  sudo useradd $TC_SCRIPT && \
  sudo chown -R $TC_SCRIPT:$TC_SCRIPT /opt/$DESTINATION && \
+ sudo chmod 744 /opt/$DESTINATION/plugins/$NODE_PLUGIN && \
  sudo update-rc.d $TC_SCRIPT defaults && \
  sudo chmod +x /etc/init.d/$TC_SCRIPT
+
+# Define mountable directories
+VOLUME ["/opt/TeamCity"]
+
+# Define working directory
+WORKDIR /opt/TeamCity
 
 # Expose ports
 EXPOSE 8111
