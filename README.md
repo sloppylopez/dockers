@@ -71,3 +71,4 @@ Prerequisites :
 
     https://www.mindmeister.com/389671722/docker-ecosystem
     https://www.digitalocean.com/community/tutorials/how-to-manage-jenkins-with-rancher-on-ubuntu-14-04
+    https://docs.docker.com/docker-hub/builds/

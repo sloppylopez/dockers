@@ -9,7 +9,7 @@
           https://github.com/travis-ci/travis-ci/issues/1196
           However we will fix this using Jenkins
 
-          The simplest and cleanes and better solution is to use docker hub
+          The simplest and cleanest and better solution is to use docker hub
           automated builds.
 
     FEATURES ADDED:
