@@ -68,3 +68,6 @@ Prerequisites :
     https://confluence.jetbrains.com/display/TCD7/Setting+up+an+External+Database#SettingupanExternalDatabase-MySQL
     https://confluence.jetbrains.com/display/TCD9/Setting+up+and+Running+Additional+Build+Agents
     http://sparktutorials.github.io/2015/04/14/getting-started-with-spark-and-docker.html
+
+    https://www.mindmeister.com/389671722/docker-ecosystem
+    https://www.digitalocean.com/community/tutorials/how-to-manage-jenkins-with-rancher-on-ubuntu-14-04
