@@ -3,7 +3,7 @@ Base Article http://thepracticalsysadmin.com/running-elk-on-docker/
 ## docker has stopped distributing images with java pre-installed 
  
  <img src="https://github.com/sloppylopez/angularclient/blob/master/app/images/100x100/foreveralone.jpg" alt="sloppylopez.com"/>
- ![alt tag](http://www.memesly.com/media/created/ghp9w3.jpg) v1.0.1-forever-alone
+ ![alt tag](http://www.memesly.com/media/created/ghp9w3.jpg) v1.0.9-forever-alone
  
  <a href="http://sloppylopez.com/">sloppylopez.com</a>
  
@@ -76,4 +76,5 @@ Prerequisites :
 
     //webhooks
     https://registry.hub.docker.com/u/sloppylopez/dockers/settings/webhooks/
+    https://www.digitalocean.com/community/tutorials/how-to-use-the-digitalocean-elk-stack-one-click-application
 
