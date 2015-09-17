@@ -57,8 +57,8 @@ Prerequisites :
     sudo docker run -dt -p 8111:8111 dockers_teamcity -> run docker teamcity image in detached mode
     sudo docker run -ti -p 8111:8111 dockers_teamcity /bin/bash -> run docker teamcity image in interactive mode
 
-##Single Run(phusion images only)
-    docker run -t -i <YOUR_NAME_IMAGE> /sbin/my_init -- bash -l
+##Finally we are using rancher as base operating system for our Docker containers
+   
     
 ##Info sources:
     http://stackshare.io/docker-tools
