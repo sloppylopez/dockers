@@ -6,9 +6,8 @@
 # to `latest`! See
 # https://github.com/phusion/baseimage-docker/blob/master/Changelog.md
 # for a list of version numbers.
-# using latest version 0.9.16
-FROM phusion/baseimage:0.9.16
-#FROM ubuntu:14.04
+# using latest version 0.9.17
+FROM ubuntu:14.04
 MAINTAINER Sloppy Lopez <sloppy@sloppylopez.com>
 
 ENV JENKINS_HOME=/
@@ -33,7 +32,7 @@ RUN \
  wget -q -O - https://jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add - && \
  sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list' && \
  sudo apt-get update && \
- sudo apt-get install jenkins
+ sudo apt-get install -y jenkins
 
 EXPOSE 8080
 
