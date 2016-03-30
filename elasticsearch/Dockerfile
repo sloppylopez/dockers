@@ -1,59 +1,53 @@
-#http://phusion.github.io/baseimage-docker/#solution
-#https://github.com/phusion/baseimage-docker
+FROM java:8-jre
 
-# Use phusion/baseimage as base image. To make your builds
-# reproducible, make sure you lock down to a specific version, not
-# to `latest`! See
-# https://github.com/phusion/baseimage-docker/blob/master/Changelog.md
-# for a list of version numbers.
-# using latest version 0.9.16
-FROM phusion/baseimage:0.9.16
-#FROM rancherio/os:latest
-#FROM ubuntu:14.04
-MAINTAINER Sloppy Lopez <sloppy@sloppylopez.com>
+# grab gosu for easy step-down from root
+ENV GOSU_VERSION 1.7
+RUN set -x \
+	&& wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture)" \
+	&& wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture).asc" \
+	&& export GNUPGHOME="$(mktemp -d)" \
+	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
+	&& gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
+	&& rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc \
+	&& chmod +x /usr/local/bin/gosu \
+	&& gosu nobody true
 
-# Use baseimage-docker's init system.
-CMD ["/sbin/my_init"]
+# https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-repositories.html
+# https://packages.elasticsearch.org/GPG-KEY-elasticsearch
+RUN apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys 46095ACC8548582C1A2699A9D27D666CD88E42B4
 
-# ...put your own build instructions here...
-# Dependencies
-# Add a repo where OpenJDK can be found.
-RUN apt-get install -y software-properties-common
-RUN add-apt-repository -y ppa:webupd8team/java
-RUN apt-get update
+ENV ELASTICSEARCH_MAJOR 2.2
+ENV ELASTICSEARCH_VERSION 2.2.1
+ENV ELASTICSEARCH_REPO_BASE http://packages.elasticsearch.org/elasticsearch/2.x/debian
 
-# Auto-accept the Oracle JDK license
-RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
-RUN apt-get install -y oracle-java8-installer
+RUN echo "deb $ELASTICSEARCH_REPO_BASE stable main" > /etc/apt/sources.list.d/elasticsearch.list
 
-# Set install version
-ENV ES_PKG_NAME elasticsearch-1.5.1
+RUN set -x \
+	&& apt-get update \
+	&& apt-get install -y --no-install-recommends elasticsearch=$ELASTICSEARCH_VERSION \
+	&& rm -rf /var/lib/apt/lists/*
 
-# Install ElasticSearch
-RUN \
- cd / && \
- wget https://download.elasticsearch.org/elasticsearch/elasticsearch/$ES_PKG_NAME.tar.gz && \
- tar xvzf $ES_PKG_NAME.tar.gz && \
- rm -f $ES_PKG_NAME.tar.gz && \
- mv /$ES_PKG_NAME /elasticsearch
+ENV PATH /usr/share/elasticsearch/bin:$PATH
 
-# Define mountable directories
-VOLUME ["/data"]
+WORKDIR /usr/share/elasticsearch
 
-# Define working directory
-WORKDIR /data
+RUN set -ex \
+	&& for path in \
+		./data \
+		./logs \
+		./config \
+		./config/scripts \
+	; do \
+		mkdir -p "$path"; \
+		chown -R elasticsearch:elasticsearch "$path"; \
+	done
 
-# Custom ES config
-ADD elasticsearch.yml /elasticsearch/config/elasticsearch.yml
+COPY config ./config
 
-# Expose ports
-EXPOSE 9200
-EXPOSE 9300
+VOLUME /usr/share/elasticsearch/data
 
-# Define default command
-CMD ["/elasticsearch/bin/elasticsearch"]
+COPY docker-entrypoint.sh /
 
-# ...put your own build instructions here...
-
-# Clean up APT when done.
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+EXPOSE 9200 9300
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["elasticsearch"]
